@@ -1,3 +1,8 @@
+'use strict';
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
 const tagsById = {
   // Baseline tags
   0x00FE: 'NewSubfileType',
@@ -180,7 +185,5 @@ for (var i in tagsById) {
   tagsByName[tagsById[i]] = i;
 }
 
-export {
-  tagsById,
-  tagsByName
-};
+exports.tagsById = tagsById;
+exports.tagsByName = tagsByName;

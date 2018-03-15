@@ -1,3 +1,8 @@
+'use strict';
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
 const tagsById = {
   0x0000: 'GPSVersionID',
   0x0001: 'GPSLatitudeRef',
@@ -38,7 +43,5 @@ for (var i in tagsById) {
   tagsByName[tagsById[i]] = i;
 }
 
-export {
-  tagsById,
-  tagsByName
-};
+exports.tagsById = tagsById;
+exports.tagsByName = tagsByName;

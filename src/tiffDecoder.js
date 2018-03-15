@@ -1,15 +1,31 @@
-import IOBuffer from 'iobuffer';
+'use strict';
 
-import IFD from './ifd';
-import TiffIFD from './tiffIfd';
-import { getByteLength, readData } from './ifdValue';
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+var _iobuffer = require('iobuffer');
+
+var _iobuffer2 = _interopRequireDefault(_iobuffer);
+
+var _ifd = require('./ifd');
+
+var _ifd2 = _interopRequireDefault(_ifd);
+
+var _tiffIfd = require('./tiffIfd');
+
+var _tiffIfd2 = _interopRequireDefault(_tiffIfd);
+
+var _ifdValue = require('./ifdValue');
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 const defaultOptions = {
   ignoreImageData: false,
   onlyFirst: false
 };
 
-export default class TIFFDecoder extends IOBuffer {
+class TIFFDecoder extends _iobuffer2.default {
   constructor(data, options) {
     super(data, options);
     this._nextIFD = 0;
@@ -82,9 +98,9 @@ export default class TIFFDecoder extends IOBuffer {
 
     var ifd;
     if (!options.kind) {
-      ifd = new TiffIFD();
+      ifd = new _tiffIfd2.default();
     } else {
-      ifd = new IFD(options.kind);
+      ifd = new _ifd2.default(options.kind);
     }
 
     const numEntries = this.readUint16();
@@ -109,12 +125,12 @@ export default class TIFFDecoder extends IOBuffer {
       return;
     }
 
-    const valueByteLength = getByteLength(type, numValues);
+    const valueByteLength = (0, _ifdValue.getByteLength)(type, numValues);
     if (valueByteLength > 4) {
       this.seek(this.readUint32());
     }
 
-    const value = readData(this, type, numValues);
+    const value = (0, _ifdValue.readData)(this, type, numValues);
     ifd.fields.set(tag, value);
 
     // Read sub-IFDs
@@ -146,7 +162,8 @@ export default class TIFFDecoder extends IOBuffer {
     }
     switch (ifd.type) {
       case 1: // BlackIsZero
-      case 2: // RGB
+      case 2:
+        // RGB
         this.readStripData(ifd);
         break;
       default:
@@ -179,13 +196,16 @@ export default class TIFFDecoder extends IOBuffer {
       remainingPixels -= length;
 
       switch (compression) {
-        case 1: // No compression
+        case 1:
+          // No compression
           pixel = this.fillUncompressed(bitDepth, sampleFormat, data, stripData, pixel, length);
           break;
-        case 5: // LZW
+        case 5:
+          // LZW
           throw unsupported('lzw');
         case 2: // CCITT Group 3 1-Dimensional Modified Huffman run length encoding
-        case 32773: // PackBits compression
+        case 32773:
+          // PackBits compression
           throw unsupported('Compression', compression);
         default:
           throw new Error(`invalid compression: ${compression}`);
@@ -208,6 +228,7 @@ export default class TIFFDecoder extends IOBuffer {
   }
 }
 
+exports.default = TIFFDecoder;
 function getDataArray(size, channels, bitDepth, sampleFormat) {
   if (bitDepth === 8) {
     return new Uint8Array(size * channels);

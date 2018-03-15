@@ -1,23 +1,29 @@
-var types = new Map([
-  [1, [1, readByte]], // BYTE
-  [2, [1, readASCII]], // ASCII
-  [3, [2, readShort]], // SHORT
-  [4, [4, readLong]], // LONG
-  [5, [8, readRational]], // RATIONAL
-  [6, [1, readSByte]], // SBYTE
-  [7, [1, readByte]], // UNDEFINED
-  [8, [2, readSShort]], // SSHORT
-  [9, [4, readSLong]], // SLONG
-  [10, [8, readSRational]], // SRATIONAL
-  [11, [4, readFloat]], // FLOAT
-  [12, [8, readDouble]] // DOUBLE
+'use strict';
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.getByteLength = getByteLength;
+exports.readData = readData;
+var types = new Map([[1, [1, readByte]], // BYTE
+[2, [1, readASCII]], // ASCII
+[3, [2, readShort]], // SHORT
+[4, [4, readLong]], // LONG
+[5, [8, readRational]], // RATIONAL
+[6, [1, readSByte]], // SBYTE
+[7, [1, readByte]], // UNDEFINED
+[8, [2, readSShort]], // SSHORT
+[9, [4, readSLong]], // SLONG
+[10, [8, readSRational]], // SRATIONAL
+[11, [4, readFloat]], // FLOAT
+[12, [8, readDouble]] // DOUBLE
 ]);
 
-export function getByteLength(type, count) {
+function getByteLength(type, count) {
   return types.get(type)[0] * count;
 }
 
-export function readData(decoder, type, count) {
+function readData(decoder, type, count) {
   return types.get(type)[1](decoder, count);
 }
 

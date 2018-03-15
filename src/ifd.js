@@ -1,6 +1,22 @@
-import * as standard from './tags/standard';
-import * as exif from './tags/exif';
-import * as gps from './tags/gps';
+'use strict';
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+var _standard = require('./tags/standard');
+
+var standard = _interopRequireWildcard(_standard);
+
+var _exif = require('./tags/exif');
+
+var exif = _interopRequireWildcard(_exif);
+
+var _gps = require('./tags/gps');
+
+var gps = _interopRequireWildcard(_gps);
+
+function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } else { var newObj = {}; if (obj != null) { for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) newObj[key] = obj[key]; } } newObj.default = obj; return newObj; } }
 
 const tags = {
   standard,
@@ -8,7 +24,7 @@ const tags = {
   gps
 };
 
-export default class IFD {
+class IFD {
   constructor(kind) {
     if (!kind) {
       throw new Error('missing kind');
@@ -42,3 +58,4 @@ export default class IFD {
     return this._map;
   }
 }
+exports.default = IFD;

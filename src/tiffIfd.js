@@ -1,8 +1,18 @@
-import Ifd from './ifd';
+'use strict';
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+var _ifd = require('./ifd');
+
+var _ifd2 = _interopRequireDefault(_ifd);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 const dateTimeRegex = /^(\d{4}):(\d{2}):(\d{2}) (\d{2}):(\d{2}):(\d{2})$/;
 
-export default class TiffIfd extends Ifd {
+class TiffIfd extends _ifd2.default {
   constructor() {
     super('standard');
   }
@@ -106,6 +116,7 @@ export default class TiffIfd extends Ifd {
   }
 }
 
+exports.default = TiffIfd;
 function alwaysArray(value) {
   if (typeof value === 'number') return [value];
   return value;

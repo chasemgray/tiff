@@ -1,3 +1,8 @@
+'use strict';
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
 const tagsById = {
   0x829A: 'ExposureTime',
   0x829D: 'FNumber',
@@ -50,17 +55,17 @@ const tagsById = {
   0xA302: 'CFAPattern',
   0xA401: 'CustomRendered',
   0xA402: 'ExposureMode',
-  0xA403:	'WhiteBalance',
-  0xA404:	'DigitalZoomRatio',
-  0xA405:	'FocalLengthIn35mmFilm',
-  0xA406:	'SceneCaptureType',
-  0xA407:	'GainControl',
-  0xA408:	'Contrast',
-  0xA409:	'Saturation',
-  0xA40A:	'Sharpness',
-  0xA40B:	'DeviceSettingDescription',
-  0xA40C:	'SubjectDistanceRange',
-  0xA420:	'ImageUniqueID',
+  0xA403: 'WhiteBalance',
+  0xA404: 'DigitalZoomRatio',
+  0xA405: 'FocalLengthIn35mmFilm',
+  0xA406: 'SceneCaptureType',
+  0xA407: 'GainControl',
+  0xA408: 'Contrast',
+  0xA409: 'Saturation',
+  0xA40A: 'Sharpness',
+  0xA40B: 'DeviceSettingDescription',
+  0xA40C: 'SubjectDistanceRange',
+  0xA420: 'ImageUniqueID',
   0xA430: 'CameraOwnerName',
   0xA431: 'BodySerialNumber',
   0xA432: 'LensSpecification',
@@ -75,7 +80,5 @@ for (var i in tagsById) {
   tagsByName[tagsById[i]] = i;
 }
 
-export {
-  tagsById,
-  tagsByName
-};
+exports.tagsById = tagsById;
+exports.tagsByName = tagsByName;
