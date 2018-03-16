@@ -16,12 +16,22 @@ var _gps = require('./tags/gps');
 
 var gps = _interopRequireWildcard(_gps);
 
-function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } else { var newObj = {}; if (obj != null) { for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) newObj[key] = obj[key]; } } newObj.default = obj; return newObj; } }
+function _interopRequireWildcard(obj) {
+  if (obj && obj.__esModule) {
+    return obj;
+  } else {
+    var newObj = {};if (obj != null) {
+      for (var key in obj) {
+        if (Object.prototype.hasOwnProperty.call(obj, key)) newObj[key] = obj[key];
+      }
+    }newObj.default = obj;return newObj;
+  }
+}
 
 const tags = {
-  standard,
-  exif,
-  gps
+  standard: standard,
+  exif: exif,
+  gps: gps
 };
 
 class IFD {

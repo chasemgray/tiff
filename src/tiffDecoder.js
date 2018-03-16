@@ -18,7 +18,9 @@ var _tiffIfd2 = _interopRequireDefault(_tiffIfd);
 
 var _ifdValue = require('./ifdValue');
 
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+function _interopRequireDefault(obj) {
+  return obj && obj.__esModule ? obj : { default: obj };
+}
 
 const defaultOptions = {
   ignoreImageData: false,
@@ -144,7 +146,7 @@ class TIFFDecoder extends _iobuffer2.default {
       }
       this._nextIFD = value;
       ifd[kind] = this.decodeIFD({
-        kind,
+        kind: kind,
         ignoreImageData: true
       });
       this.offset = currentOffset;
